@@ -1,0 +1,67 @@
+[33mcommit 36307bd14b0f15362a0283cc654cc52452619755[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Emmanuel Bruno <emmanuel.bruno@univ-tln.fr>
+Date:   Sat Jan 2 13:42:57 2021 +0100
+
+    allows database creation.
+
+[33mcommit bd1062f1a8851dea9342a7b39b2e3a41ac99214c[m
+Author: Emmanuel Bruno <emmanuel.bruno@univ-tln.fr>
+Date:   Sat Jan 2 12:29:37 2021 +0100
+
+    updates h2 version in README.
+
+[33mcommit ee542b560ee0e5cbdcd65101f5f58e930e92f04f[m
+Author: Emmanuel Bruno <emmanuelbruno@users.noreply.github.com>
+Date:   Sat Jan 2 12:24:43 2021 +0100
+
+    updates Dockerfile with alpine jre 11 & less layers
+
+[33mcommit bf71e24c73c5ccfdaf4bf216badadcabee81be33[m
+Merge: b9c0e3f 915f067
+Author: Gabriele Petronella <gabriele@buildo.io>
+Date:   Fri Dec 11 09:59:20 2020 +0100
+
+    Merge pull request #1 from buildo/initdb
+
+[33mcommit 915f067221abe1ae3b87e683488ebaa35fbd3686[m
+Author: Francesco Negri <francesconegri@gmail.com>
+Date:   Wed Jan 24 13:14:31 2018 +0100
+
+    Don't re-run init scripts if the container is stopped and restarted
+
+[33mcommit bcd679117e48893ac4cb0746cda6b06439cc49d9[m
+Author: Francesco Negri <francesconegri@gmail.com>
+Date:   Wed Jan 24 12:53:33 2018 +0100
+
+    Add support for initdb scripts
+    
+    * run SQL files and sh files in /docker-entrypoint-initdb.d
+    
+    Other changes:
+    
+    * use default TCP port
+    * add documentation to README.md
+
+[33mcommit b9c0e3f8deb25a1fd1860e813fa3cd533ad5cfa3[m
+Author: Claudio Caletti <claudio@buildo.io>
+Date:   Tue Oct 10 17:07:00 2017 +0200
+
+    Add entrypoint
+
+[33mcommit 1c4f489bcb7534831cb85632c49cbc9ca319a80b[m
+Author: Claudio Caletti <claudio@buildo.io>
+Date:   Tue Oct 10 16:04:14 2017 +0200
+
+    Change h2 folder from data to h2-data
+
+[33mcommit c0134f1cefc6d0bc32c8dce4a7d682f115616eff[m
+Author: Claudio Caletti <claudio@buildo.io>
+Date:   Tue Oct 10 12:35:50 2017 +0200
+
+    Add h2 dockerfile
+
+[33mcommit 70122ce3e06ca6de32c9fa42371bb455ebeb32b7[m
+Author: Claudio Caletti <claudio@buildo.io>
+Date:   Tue Oct 10 12:34:24 2017 +0200
+
+    Initial commit
