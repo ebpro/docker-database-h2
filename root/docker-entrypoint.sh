@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
-
-SERVER="java -cp /h2/bin/h2.jar org.h2.tools.Server"
-RUNSCRIPT="java -cp /h2/bin/h2.jar org.h2.tools.RunScript"
+H2DATA="/h2-data"
+SERVER="java -cp /usr/local/bin/h2.jar org.h2.tools.Server"
+RUNSCRIPT="java -cp /usr/local/bin/h2.jar org.h2.tools.RunScript"
 
 runSql() {
   filename=$(basename "$1")

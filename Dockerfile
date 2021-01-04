@@ -29,5 +29,3 @@ COPY /root /
 
 ENTRYPOINT ["/init"]
 
-#CMD java -cp /usr/local/bin/h2.jar org.h2.tools.Server \
-#  -web -webAllowOthers -tcp -tcpAllowOthers -baseDir $H2DATA -ifNotExists
