@@ -7,12 +7,12 @@ Supports S6 supervisor and UID/GID setting.
 
 Currently only the latest stable image is built, which according to
 [this page](http://www.h2database.com/html/download.html) is
-**Version 1.4.200 (2020-01-02)**.
+**Version 2.1.214 (2023-03-21)**.
 
 ## How to use this image
 
 ```sh
-docker run -e PUID=$UID -e PGID=$GID --name my-h2 -d brunoe/h2
+docker run -e PUID=$UID -e PGID=$GID --name my-h2 -d brunoe/docker-database-h2
 ```
 
 The default TCP port 9092 is exposed, so standard container linking will make it
@@ -29,7 +29,7 @@ jdbc:h2:tcp://my-h2/my-db-name
 If you want to connect to the H2 web interface, bind the port 8082:
 
 ```sh
-docker run -e PUID=$UID -e PGID=$GID --name my-h2 -p 8082:8082 -d brunoe/h2
+docker run -e PUID=$UID -e PGID=$GID --name my-h2 -p 8082:8082 -d brunoe/docker-database-h2
 ```
 
 Then in your browser open http://localhost:8082/ and use the following
@@ -43,20 +43,23 @@ Password: _(empty)_
 if you want to use the database from the host add port 8092
 
 ```sh
-docker run --name my-h2 -p 8082:8082 -p 8092:8092 -d brunoe/h2
+docker run --name my-h2 -p 8082:8082 -p 9092:9092 -d brunoe/docker-database-h2
 ```
 
 ## Environment Variables
 
-`H2DATA` specifies the location for the db files. If not set, `/h2-data` is used
-which is automatically created as an anonymous Docker volume.
+* `H2_ARGS` overrides the default server options 
+(`-web -webAllowOthers -tcp -tcpAllowOthers -ifNotExists`)
 
+* `H2DATA` specifies the location for the db files. If not set, `/h2-data` is used
+which is automatically created as a Docker volume.
+Ò
 ```sh
-docker run --name my-h2 \
-  -p 8082:8082 \
-  -p 8092:8092 \
+docker run --name my-h2 --detach \
+  -e H2_ARGS="-tcp -tcpAllowOthers -ifNotExists"
+  -p 9092:9092 \
   -v myh2-data:/h2-data \
-  -d brunoe/h2
+  brunoe/docker-database-h2
 ```
 
 ## Initialization scripts
