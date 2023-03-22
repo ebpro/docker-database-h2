@@ -18,10 +18,10 @@ jobs:
       -
         name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v4      
         with:
           images: |
-            ${GITHUB_REPOSITORY}
+            ${DOCKER_LOGIN}/${GITHUB_REPOSITORY##*/}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
