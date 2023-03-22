@@ -12,30 +12,29 @@ jobs:
   docker:
     runs-on: [self-hosted, Linux, X64]
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Docker meta
+      - name: Precompute variables
+        id: vars
+        run: echo ::set-output name=repo_name::${GITHUB_REPOSITORY#*\/}
+      - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v4      
+        uses: docker/metadata-action@v4     
         with:
           images: |
-            ${DOCKER_LOGIN}/${GITHUB_REPOSITORY##*/}
+            ${{ secrets.DOCKER_LOGIN }}/${{ steps.vars.outputs.repo_name }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-      -
-        name: Login to DockerHub
+      - name: Login to DockerHub
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_LOGIN }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      -
-        name: Build and push
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
