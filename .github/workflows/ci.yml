@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Precompute variables
         id: vars
-        run: echo ::set-output name=repo_name::${GITHUB_REPOSITORY#*\/}
+        run: echo ::set-output name=repo_name::${GITHUB_REPOSITORY##*/}
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4     
