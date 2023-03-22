@@ -14,15 +14,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Precompute variables
-        id: vars
-        run: echo ::set-output name=repo_name::${GITHUB_REPOSITORY##*/}
+      - name: Set the environment variable
+        run: echo REPOSITORY_NAME=${GITHUB_REPOSITORY#*\/} >> $GITHUB_ENV
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4     
         with:
           images: |
-            ${{ secrets.DOCKER_LOGIN }}/${{ steps.vars.outputs.repo_name }}
+            "${{ secrets.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY_NAME }}"
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -32,8 +31,8 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_LOGIN }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
